@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Incentive Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ body { font-family: Arial, sans-serif; padding: 20px; max-width: 700px; margin: auto; }
+ .box { border: 1px solid #ccc; padding: 15px; border-radius: 8px; margin-top: 20px; }
+ label { display: block; margin-top: 10px; }
+ input { width: 100%; padding: 8px; margin-top: 5px; }
+ h2 { margin-top: 30px; }
+ .row { margin-top: 8px; }
+</style>
+</head>
+<body>
+<h1>Incentive Calculator</h1>
+
+<label>Total Potential Monthly Earnings (BDT):</label>
+<input id="totalInput" type="number" value="10000" oninput="calculate()">
+
+<div class="box">
+<h2>Breakdown</h2>
+<div class="row">Base Weekly Payment: <span id="base"></span></div>
+<div class="row">Cadence Bonus: <span id="cadence"></span></div>
+<div class="row">KPI Bonus Pool: <span id="kpi"></span></div>
+</div>
+
+<script>
+function calculate(){
+    let total = Number(document.getElementById('totalInput').value);
+    let base = 2000;
+    let cadence = 4000;
+    let kpi = total - (base + cadence);
+    document.getElementById('base').innerText = base + " BDT";
+    document.getElementById('cadence').innerText = cadence + " BDT";
+    document.getElementById('kpi').innerText = kpi + " BDT";
+}
+calculate();
+</script>
+</body>
+</html>

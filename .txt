@@ -1,0 +1,53 @@
+module.exports = {
+  darkMode: 'class',
+  content: [
+    './app/**/*.{js,ts,jsx,tsx}',
+    './features/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'chrono-bg-page': 'var(--chrono-bg-page)',
+        'chrono-bg-card': 'var(--chrono-bg-card)',
+        'chrono-accent': 'var(--chrono-accent)',
+        'chrono-danger': 'var(--chrono-danger)',
+        'chrono-info': 'var(--chrono-info)',
+      },
+      textColor: {
+        foreground: 'var(--chrono-fg-primary)',
+        'muted-foreground': 'var(--chrono-fg-muted)',
+      },
+      backgroundColor: {
+        'chrono-bg-page': 'var(--chrono-bg-page)',
+        'chrono-bg-card': 'var(--chrono-bg-card)',
+      },
+      fontFamily: {
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'system-ui',
+          'sans-serif',
+        ],
+        mono: ['SFMono-Regular', 'ui-monospace', 'Menlo', 'Monaco', 'monospace'],
+      },
+      transitionTimingFunction: {
+        'soft-out': 'cubic-bezier(0.22, 0.61, 0.36, 1)',
+      },
+      keyframes: {
+        'menu-in': {
+          '0%': { opacity: '0', transform: 'translateY(-4px) scale(0.97)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
+        'menu-out': {
+          '0%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+          '100%': { opacity: '0', transform: 'translateY(-4px) scale(0.97)' },
+        },
+      },
+      animation: {
+        'menu-in': 'menu-in 0.2s var(--ease-soft-out) forwards',
+        'menu-out': 'menu-out 0.18s var(--ease-soft-out) forwards',
+      },
+    },
+  },
+  plugins: [],
+};
