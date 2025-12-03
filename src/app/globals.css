@@ -95,3 +95,12 @@ input[type="number"] {
 	background-color: rgba(148, 163, 184, 0.35);
 	border-radius: 999px;
 }
+
+.scrollbar-none {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+	display: none;
+}

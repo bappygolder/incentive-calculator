@@ -1,4 +1,5 @@
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, FocusEvent } from "react";
+import { useState, useEffect } from "react";
 
 type IncentiveInputProps = {
   value: number;
@@ -8,21 +9,64 @@ type IncentiveInputProps = {
 };
 
 export function IncentiveInput({ value, onChange, label = "Total Potential Monthly Earnings (BDT)", size = "default" }: IncentiveInputProps) {
+  const [displayValue, setDisplayValue] = useState(String(value));
+
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    const parsed = Number(event.target.value);
-    if (Number.isNaN(parsed)) {
+    const inputValue = event.target.value;
+
+    // Allow empty input
+    if (inputValue === "") {
+      setDisplayValue("");
       onChange(0);
       return;
     }
-    onChange(parsed);
+
+    // Only allow digits
+    if (!/^\d+$/.test(inputValue)) {
+      return;
+    }
+
+    // Update display value
+    setDisplayValue(inputValue);
+
+    // Parse and update the numeric value
+    const parsed = Number(inputValue);
+    if (!Number.isNaN(parsed)) {
+      onChange(parsed);
+    }
   }
 
+  function handleFocus(event: FocusEvent<HTMLInputElement>) {
+    // Clear the field if it's 0
+    if (value === 0) {
+      setDisplayValue("");
+    }
+    // Select all text on focus for easy replacement
+    event.target.select();
+  }
+
+  function handleBlur() {
+    // If empty on blur, reset to the actual value (0)
+    if (displayValue === "") {
+      setDisplayValue(String(value));
+    } else {
+      // Remove leading zeros if any
+      const cleaned = String(Number(displayValue));
+      setDisplayValue(cleaned);
+    }
+  }
+
+  // Sync display value with prop value when it changes externally
+  useEffect(() => {
+    setDisplayValue(String(value));
+  }, [value]);
+
   const baseClasses =
-    "mt-1 w-full rounded-md border border-chrono-border-subtle bg-transparent px-3 text-chrono-fg-primary placeholder:text-chrono-fg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-chrono-accent";
+    "mt-1 w-full rounded-xl border border-chrono-border-subtle bg-transparent px-4 text-chrono-fg-primary placeholder:text-chrono-fg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-chrono-accent transition-all duration-200";
   const sizeClasses =
     size === "large"
-      ? "h-14 text-2xl font-semibold tracking-tight"
-      : "flex h-9 py-1 text-sm";
+      ? "h-14 text-2xl md:text-3xl font-semibold tracking-tight"
+      : "flex h-10 py-2 text-base";
 
   return (
     <div className="space-y-2">
@@ -30,11 +74,12 @@ export function IncentiveInput({ value, onChange, label = "Total Potential Month
         {label}
       </label>
       <input
-        type="number"
-        min={0}
-        inputMode="decimal"
-        value={value}
+        type="text"
+        inputMode="numeric"
+        value={displayValue}
         onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         className={`${baseClasses} ${sizeClasses}`}
       />
     </div>
