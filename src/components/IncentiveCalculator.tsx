@@ -16,7 +16,7 @@ export function IncentiveCalculator() {
 	const kpiAmount = safeTotal - baseAmount - quarterlyAmount - cadenceAmount; // remaining 12.5%
 
 	return (
-		<div className="w-full max-w-2xl min-h-[600px] max-h-[85vh] overflow-y-auto scrollbar-none rounded-3xl border border-chrono-border-subtle/80 bg-chrono-bg-card/90 px-6 py-6 md:px-10 md:py-9 shadow-[0_22px_65px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all duration-300">
+		<div className="w-full max-w-4xl min-h-[600px] max-h-[85vh] overflow-y-auto scrollbar-none rounded-3xl border border-chrono-border-subtle/80 bg-chrono-bg-card/90 px-6 py-6 md:px-10 md:py-9 shadow-[0_22px_65px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all duration-300">
 			<header className="flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8">
 				<div className="flex items-center gap-3">
 					<h1 className="text-xl md:text-2xl font-semibold tracking-tight text-foreground">Incentive Calculator</h1>
