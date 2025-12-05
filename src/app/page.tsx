@@ -19,17 +19,21 @@ export default function Page() {
 					<svg
 						aria-hidden="true"
 						viewBox="0 0 24 24"
-						className="h-5 w-5"
+						className="h-6 w-6"
 					>
 						<path
-							fill="currentColor"
-							d="M12 9.5A2.5 2.5 0 1 0 12 14.5 2.5 2.5 0 0 0 12 9.5Zm8.94 2.06-1.7-.98c.04-.36.06-.73.06-1.08s-.02-.72-.06-1.08l1.7-.98a.75.75 0 0 0 .27-1.02l-1.6-2.77a.75.75 0 0 0-.96-.32l-1.7.98a7.2 7.2 0 0 0-1.88-1.09V2.1A.75.75 0 0 0 13.37 1h-3.2a.75.75 0 0 0-.75.75v1.96a7.2 7.2 0 0 0-1.88 1.09l-1.7-.98a.75.75 0 0 0-.96.32L3.28 6.91a.75.75 0 0 0 .27 1.02l1.7.98c-.04.36-.06.73-.06 1.08s.02.72.06 1.08l-1.7.98a.75.75 0 0 0-.27 1.02l1.6 2.77c.2.35.64.47.99.27l1.7-.98c.56.46 1.2.83 1.88 1.09v1.96c0 .41.34.75.75.75h3.2c.41 0 .75-.34.75-.75v-1.96c.68-.26 1.32-.63 1.88-1.09l1.7.98c.35.2.79.08.99-.27l1.6-2.77a.75.75 0 0 0-.27-1.02Zm-4.41 1.39A4.98 4.98 0 0 1 12 17a4.98 4.98 0 0 1-4.53-3.05A5.02 5.02 0 0 1 7 12c0-.73.16-1.42.47-2.05A4.98 4.98 0 0 1 12 7a4.98 4.98 0 0 1 4.53 3.05c.31.63.47 1.32.47 2.05 0 .73-.16 1.42-.47 2.05Z"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="1.8"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M4 6h10M4 12h16M4 18h8M14 4v4M8 10v4M18 16v4"
 						/>
 					</svg>
 				</button>
 
 				{settingsOpen && (
-					<div className="pointer-events-auto w-64 rounded-2xl bg-chrono-bg-card/80 px-4 py-3 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
+					<div className="pointer-events-auto w-64 rounded-2xl border border-chrono-border-subtle/80 bg-chrono-bg-card/80 px-4 py-3 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
 						<div className="space-y-3 text-sm">
 							<div className="text-[11px] font-medium text-chrono-fg-muted">Social</div>
 							<a
@@ -61,7 +65,7 @@ export default function Page() {
 			{/* Centered main card */}
 			<IncentiveCalculator />
 
-			<p className="text-xs font-medium text-muted-foreground/50 tracking-widest uppercase select-none">
+			<p className="text-xs md:text-sm font-medium text-muted-foreground/70 tracking-[0.35em] uppercase select-none">
 				A product by oLAB
 			</p>
 		</main>

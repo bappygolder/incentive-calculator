@@ -54,10 +54,9 @@ export function BreakdownCard({ base, cadence, quarterly, kpi, total }: Breakdow
 
 	return (
 		<section className="mt-8 text-sm">
-			<h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-chrono-fg-muted mb-6">Breakdown</h2>
-			<div className="space-y-6">
+			<div className="space-y-4">
 				{/* Base Weekly Payment */}
-				<div className="group -mx-2 rounded-xl border border-transparent px-2 py-2 transition-all duration-200 ease-out hover:-translate-y-px hover:border-chrono-border-subtle/40 hover:bg-white/[0.012]">
+				<div className="group rounded-lg px-3 py-3 transition-colors duration-200 ease-out hover:bg-white/[0.02]">
 					<div className="flex items-center justify-between mb-2">
 						<span className="text-muted-foreground font-medium">Base Weekly Payment</span>
 						<span className="font-semibold text-foreground tracking-tight">{formatBdt(base)}</span>
@@ -89,7 +88,7 @@ export function BreakdownCard({ base, cadence, quarterly, kpi, total }: Breakdow
 				</div>
 
 				{/* Quarterly Bonus */}
-				<div className="group -mx-2 rounded-xl border border-transparent px-2 py-2 transition-all duration-200 ease-out hover:-translate-y-px hover:border-chrono-border-subtle/40 hover:bg-white/[0.012]">
+				<div className="group rounded-lg px-3 py-3 transition-colors duration-200 ease-out hover:bg-white/[0.02]">
 					<div className="flex items-center justify-between mb-2">
 						<span className="text-muted-foreground font-medium">Quarterly Bonus</span>
 						<span className="font-semibold text-foreground tracking-tight">{formatBdt(quarterly)}</span>
@@ -121,7 +120,7 @@ export function BreakdownCard({ base, cadence, quarterly, kpi, total }: Breakdow
 				</div>
 
 				{/* Cadence Bonus */}
-				<div className="group -mx-2 rounded-xl border border-transparent px-2 py-2 transition-all duration-200 ease-out hover:-translate-y-px hover:border-chrono-border-subtle/40 hover:bg-white/[0.012]">
+				<div className="group rounded-lg px-3 py-3 transition-colors duration-200 ease-out hover:bg-white/[0.02]">
 					<div className="flex items-center justify-between mb-2">
 						<span className="text-muted-foreground font-medium">Cadence Bonus</span>
 						<span className="font-semibold text-foreground tracking-tight">{formatBdt(cadence)}</span>
@@ -153,7 +152,7 @@ export function BreakdownCard({ base, cadence, quarterly, kpi, total }: Breakdow
 				</div>
 
 				{/* KPI Bonus */}
-				<div className="group -mx-2 rounded-xl border border-transparent px-2 py-2 transition-all duration-200 ease-out hover:-translate-y-px hover:border-chrono-border-subtle/40 hover:bg-white/[0.012]">
+				<div className="group rounded-lg px-3 py-3 transition-colors duration-200 ease-out hover:bg-white/[0.02]">
 					<div className="flex items-center justify-between mb-2">
 						<span className="text-muted-foreground font-medium">KPI Bonus</span>
 						<span className="font-semibold text-foreground tracking-tight">{formatBdt(kpi)}</span>
