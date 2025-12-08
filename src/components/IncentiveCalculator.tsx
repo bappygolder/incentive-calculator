@@ -1,14 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { IncentiveInput } from "./IncentiveInput";
 import { BreakdownCard } from "./BreakdownCard";
 
-type IncentiveCalculatorProps = {
-	total: number;
-	onTotalChange: (value: number) => void;
-};
-
-export function IncentiveCalculator({ total, onTotalChange }: IncentiveCalculatorProps) {
+export function IncentiveCalculator() {
+	const [total, setTotal] = useState<number>(8000);
 
 	// Derive all rows from total using fixed ratios based on the
 	// default example (8000 → 2000, 1000, 4000, 1000).
@@ -42,7 +39,7 @@ export function IncentiveCalculator({ total, onTotalChange }: IncentiveCalculato
 				<div className="w-full md:w-64">
 					<IncentiveInput
 						value={total}
-						onChange={onTotalChange}
+						onChange={setTotal}
 						size="large"
 						label=""
 					/>

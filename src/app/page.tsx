@@ -1,112 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IncentiveCalculator } from "@/components/IncentiveCalculator";
 
 export default function Page() {
-	const [total, setTotal] = useState<number>(8000);
 	const [settingsOpen, setSettingsOpen] = useState(false);
-	const [shareStatus, setShareStatus] = useState<"idle" | "copied">("idle");
-
-	useEffect(() => {
-		if (typeof window === "undefined") return;
-		const params = new URLSearchParams(window.location.search);
-		const raw = params.get("total");
-		if (!raw) return;
-		const parsed = Number(raw);
-		if (Number.isFinite(parsed) && parsed > 0) {
-			setTotal(parsed);
-		}
-	}, []);
-
-	useEffect(() => {
-		if (typeof window === "undefined") return;
-		const url = new URL(window.location.href);
-		if (Number.isFinite(total) && total > 0) {
-			url.searchParams.set("total", String(Math.round(total)));
-		} else {
-			url.searchParams.delete("total");
-		}
-		window.history.replaceState(null, "", url.toString());
-	}, [total]);
-
-	async function handleShare() {
-		if (typeof window === "undefined") return;
-
-		const shareUrl = window.location.href;
-		const shareData = {
-			title: "Incentive Calculator",
-			text: "Check out this incentive breakdown.",
-			url: shareUrl,
-		};
-
-		try {
-			if (navigator.share) {
-				await navigator.share(shareData);
-			} else if (navigator.clipboard && navigator.clipboard.writeText) {
-				await navigator.clipboard.writeText(shareUrl);
-				setShareStatus("copied");
-				window.setTimeout(() => setShareStatus("idle"), 1600);
-			} else {
-				window.prompt("Copy this link:", shareUrl);
-			}
-		} catch {
-			// ignore share cancel/errors silently
-		}
-	}
 
 	return (
 		<main className="relative flex min-h-screen w-full flex-col items-center justify-center px-6 py-8 md:py-12 gap-6">
-			{/* Share + settings pinned to app's top-right corner */}
-			<div className="pointer-events-none absolute right-6 top-6 flex flex-col items-end gap-2">
-				<div className="pointer-events-auto flex items-center gap-2 text-chrono-fg-muted">
-					<button
-						type="button"
-						onClick={handleShare}
-						className="hover:text-chrono-accent transition-colors"
-						aria-label="Share calculation"
+			{/* Settings icon pinned to app's top-right corner */}
+			<div className="pointer-events-none absolute right-6 top-6 flex flex-col items-end gap-3">
+				<button
+					type="button"
+					onClick={() => setSettingsOpen((open) => !open)}
+					className="pointer-events-auto text-chrono-fg-muted hover:text-chrono-accent transition-colors"
+					aria-label="Toggle settings"
+				>
+					<svg
+						aria-hidden="true"
+						viewBox="0 0 24 24"
+						className="h-6 w-6"
 					>
-						<svg
-							aria-hidden="true"
-							viewBox="0 0 24 24"
-							className="h-5 w-5"
-						>
-							<path
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="1.8"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M12 4v10m0-10 4 4m-4-4-4 4M6 13v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-5"
-							/>
-						</svg>
-					</button>
-					<button
-						type="button"
-						onClick={() => setSettingsOpen((open) => !open)}
-						className="hover:text-chrono-accent transition-colors"
-						aria-label="Toggle settings"
-					>
-						<svg
-							aria-hidden="true"
-							viewBox="0 0 24 24"
-							className="h-6 w-6"
-						>
-							<path
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="1.8"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M4 6h10M4 12h16M4 18h8M14 4v4M8 10v4M18 16v4"
-							/>
-						</svg>
-					</button>
-				</div>
-
-				{shareStatus === "copied" && (
-					<span className="pointer-events-none text-[11px] text-chrono-fg-muted/80">Link copied</span>
-				)}
+						<path
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="1.8"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M4 6h10M4 12h16M4 18h8M14 4v4M8 10v4M18 16v4"
+						/>
+					</svg>
+				</button>
 
 				{settingsOpen && (
 					<div className="pointer-events-auto w-64 rounded-2xl border border-chrono-border-subtle/80 bg-chrono-bg-card/80 px-4 py-3 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
@@ -139,7 +63,7 @@ export default function Page() {
 			</div>
 
 			{/* Centered main card */}
-			<IncentiveCalculator total={total} onTotalChange={setTotal} />
+			<IncentiveCalculator />
 
 			<p className="text-xs md:text-sm font-medium text-muted-foreground/70 tracking-[0.35em] uppercase select-none">
 				A product by oLAB
